@@ -36,7 +36,7 @@ Thats all, is pretty simple.
 
 If you need more information related to Vagrant, go to the official [Vagrant documentation](https://www.vagrantup.com/docs/).
 
-### Setup Oprions ###
+### Setup Options ###
 
 The project has optional tuning tools that can be used during the vagrant up or reload.
 
@@ -48,7 +48,7 @@ To start the build process, execute the following command:
 $ vagrant --custom=build up
 ```
 
-By default  the build process only restarts mysql and apache services.
+By default  the build process deletes the logs and restarts LAMP services.
 
 ### MIT License ###
 
