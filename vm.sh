@@ -14,22 +14,22 @@ sudo a2enmod rewrite
 sudo a2dissite 000-default.conf
 
 sudo cat << EOF > /etc/apache2/sites-available/000-default.conf
-    <VirtualHost *:80>
-        DocumentRoot /var/www/html
-        ServerName localhost
-        <Directory /var/www/html>
-            AllowOverride All
-            Require all granted
-            <IfModule mod_rewrite.c>
-                Options -MultiViews
-                RewriteEngine On
-                RewriteCond %{REQUEST_FILENAME} !-f
-                RewriteRule ^(.*)$ index.php [QSA,L]
-            </IfModule>
-        </Directory>
-        ErrorLog /var/www/var/log/error.log
-        CustomLog /var/www/var/log/access.log combined
-    </VirtualHost>
+  <VirtualHost *:80>
+    DocumentRoot /var/www/html
+    ServerName localhost
+    <Directory /var/www/html>
+      AllowOverride All
+      Require all granted
+      <IfModule mod_rewrite.c>
+        Options -MultiViews
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ index.php [QSA,L]
+      </IfModule>
+    </Directory>
+    ErrorLog /var/www/var/log/error.log
+    CustomLog /var/www/var/log/access.log combined
+  </VirtualHost>
 EOF
 
 sudo a2ensite 000-default.conf
@@ -45,7 +45,7 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again p
 sudo apt-get install -y mysql-server
 
 sudo mysql -uroot -ppass << EOF
-    CREATE DATABASE IF NOT EXISTS development;
+  CREATE DATABASE IF NOT EXISTS development;
 EOF
 
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
