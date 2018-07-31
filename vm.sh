@@ -15,9 +15,9 @@ sudo a2dissite 000-default.conf
 
 sudo cat << EOF > /etc/apache2/sites-available/000-default.conf
   <VirtualHost *:80>
-    DocumentRoot /var/www/html
+    DocumentRoot /var/www/public
     ServerName localhost
-    <Directory /var/www/html>
+    <Directory /var/www/public>
       AllowOverride All
       Require all granted
       <IfModule mod_rewrite.c>
@@ -35,9 +35,12 @@ EOF
 sudo a2ensite 000-default.conf
 sudo ufw allow in "Apache Full"
 
-sudo mv /var/www/html/index.html /var/www/html/index.php
-
+sudo mkdir -p /var/www/public
 sudo mkdir -p /var/www/var/log
+
+sudo mv /var/www/html/index.html /var/www/public/index.php
+
+sudo rm -rf /var/www/html
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password pass"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password pass"
