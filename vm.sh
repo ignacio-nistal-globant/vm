@@ -27,15 +27,17 @@ sudo cat << EOF > /etc/apache2/sites-available/000-default.conf
                 RewriteRule ^(.*)$ index.php [QSA,L]
             </IfModule>
         </Directory>
+        ErrorLog /var/www/var/log/error.log
+        CustomLog /var/www/var/log/access.log combined
     </VirtualHost>
 EOF
 
 sudo a2ensite 000-default.conf
 sudo ufw allow in "Apache Full"
 
-if [ -d /var/www/html ]; then
-    sudo mv /var/www/html/index.html /var/www/html/index.php
-fi
+sudo mv /var/www/html/index.html /var/www/html/index.php
+
+sudo mkdir -p /var/www/var/log
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password pass"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password pass"
@@ -53,10 +55,11 @@ sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password p
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
 
 sudo apt-get install -y nodejs php libapache2-mod-php phpmyadmin phpunit
-sudo apt-get autoremove -y --purge
 
 sudo chmod -R 0777 /var/www
 sudo chown -R www-data:www-data /var/www
 
 sudo service mysql restart
 sudo service apache2 restart
+
+sudo apt-get autoremove -y --purge

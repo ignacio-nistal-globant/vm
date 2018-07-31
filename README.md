@@ -38,9 +38,17 @@ If you need more information related to Vagrant, go to the official [Vagrant doc
 
 ### Setup Oprions ###
 
+The project has optional tuning tools that can be used during the vagrant up or reload.
+
+Using build as custom argument, te tool will execute [build.sh](./build.sh) as soon as finish with the start or reload process. You can add any line you need into this file.
+
+To start the build process, execute the following command:
+
 ```
 $ vagrant --custom=build up
 ```
+
+By default  the build process only restarts mysql and apache services.
 
 ### MIT License ###
 
