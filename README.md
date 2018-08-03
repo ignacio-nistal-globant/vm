@@ -1,6 +1,6 @@
 # Ubuntu Virtual Machine #
 
-This is a very flexible virtual machine that allows you to create a simple Ubuntu Xenial64 server for LAMP stack developers which also includes many related modern development tools.
+This is a very flexible virtual machine that allows you to create a simple Ubuntu Server Bionic64 for LAMP stack developers which also includes many related modern development tools.
 
 Please read all the document before start using the project.
 
@@ -10,7 +10,7 @@ A lot of PHP websites and applications don’t require much server configuration
 
 ### Setup ###
 
-The project has the following pre requisites:
+The project has the following pre-requisites:
 
 * Git [http://git-scm.com/](http://git-scm.com/)
 * Vagrant [http://www.vagrantup.com/](http://www.vagrantup.com/)
@@ -22,8 +22,6 @@ Once you have installed the prerequisites, fork and clone the project repository
 VBOX_CORE = "1"
 VBOX_MEMORY = "1024"
 VBOX_NAME = "Development"
-VBOX_PORT = "8080"
-VBOX_PORT_SECURE = "8443"
 ```
 
 Now execute the following command:
@@ -32,15 +30,30 @@ Now execute the following command:
 $ vagrant up
 ```
 
-Thats all, is pretty simple.
+Once ready, you can test it by opening following URL on your browser:
+
+```
+[http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+```
+
+If you want to test the Web Server or the MySQL database:
+
+```
+[https://127.0.0.1:10000/](https://127.0.0.1:10000/)
+```
+```
+[http://127.0.0.1:8080/phpmyadmin/](http://127.0.0.1:8080/phpmyadmin/)
+```
+
+That's all, as you can see, very simple.
 
 If you need more information related to Vagrant, go to the official [Vagrant documentation](https://www.vagrantup.com/docs/).
 
-### Setup Options ###
+### Available Tools ###
 
-The project has optional tuning tools that can be used during the vagrant up or reload.
+The project has an optional tool that can be used during the vagrant up or reload.
 
-Using build as custom argument, te tool will execute [build.sh](./build.sh) as soon as finish with the start or reload process. You can add any line you need into this file.
+Using build as custom argument, the tool will execute [build.sh](./build.sh) as soon as finish with the start or reload process. You can add any line you need into this file.
 
 To start the build process, execute the following command:
 
@@ -48,7 +61,7 @@ To start the build process, execute the following command:
 $ vagrant --custom=build up
 ```
 
-By default  the build process deletes the logs and restarts LAMP services.
+By default the build process only deletes the logs and restarts LAMP services.
 
 ### MIT License ###
 

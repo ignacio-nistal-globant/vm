@@ -4,6 +4,12 @@ export DEBIAN_FRONTEND=noninteractive
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
+sudo add-apt-repository "deb http://download.webmin.com/download/repository sarge contrib"
+
+wget http://www.webmin.com/jcameron-key.asc
+
+sudo apt-key add jcameron-key.asc
+
 sudo apt-get update
 sudo apt-get upgrade -y
 
@@ -57,7 +63,15 @@ sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password pass"
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
 
-sudo apt-get install -y nodejs php libapache2-mod-php phpmyadmin phpunit
+sudo apt-get install -y nodejs
+sudo apt-get install -y php libapache2-mod-php
+sudo apt-get install -y phpmyadmin
+sudo apt-get install -y apt-transport-https webmin
+
+sudo iptables -A INPUT -p tcp -m tcp --dport 10000 -j ACCEPT
+
+sudo curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
 
 sudo chmod -R 0777 /var/www
 sudo chown -R www-data:www-data /var/www
