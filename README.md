@@ -39,7 +39,7 @@ Once ready, you can test it by opening following URL on your browser:
 If you want to test the Web Server or the MySQL database:
 
 ```
-[https://127.0.0.1:10000/](https://127.0.0.1:10000/)
+[https://127.0.0.1:10000/](https://127.0.0.1:8989/)
 ```
 ```
 [http://127.0.0.1:8080/phpmyadmin/](http://127.0.0.1:8080/phpmyadmin/)
