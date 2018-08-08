@@ -15,30 +15,20 @@ sudo apt-get upgrade -y
 
 sudo apt-get install -y apache2 debconf-utils swapspace unzip zip
 
-echo "ServerName localhost" >> /etc/apache2/apache2
-sudo a2enmod rewrite
-sudo a2dissite 000-default.conf
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-sudo cat << EOF > /etc/apache2/sites-available/000-default.conf
-  <VirtualHost *:80>
-    DocumentRoot /var/www/html
-    ServerName localhost
-    <Directory /var/www/html>
-      AllowOverride All
-      Require all granted
-      <IfModule mod_rewrite.c>
-        Options -MultiViews
-        RewriteEngine On
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteRule ^(.*)$ index.php [QSA,L]
-      </IfModule>
-    </Directory>
-    ErrorLog /var/www/var/log/error.log
-    CustomLog /var/www/var/log/access.log combined
-  </VirtualHost>
-EOF
+sudo a2enmod rewrite
+sudo a2enmod ssl
+
+sudo a2dissite 000-default.conf
+sudo a2dissite default-ssl
+
+sudo cp /var/www/provision/vm/apache.conf /etc/apache2/sites-available/000-default.conf
+sudo cp /var/www/provision/vm/apache-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 sudo a2ensite 000-default.conf
+sudo a2ensite default-ssl
+
 sudo ufw allow in "Apache Full"
 
 sudo mkdir -p /var/www/var/log
@@ -50,9 +40,7 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again p
 
 sudo apt-get install -y mysql-server
 
-sudo mysql -uroot -ppass << EOF
-  CREATE DATABASE IF NOT EXISTS development;
-EOF
+sudo mysql -uroot -ppass < /var/www/provision/vm/my.sql
 
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password pass"
@@ -73,7 +61,8 @@ sudo mv composer.phar /usr/local/bin/composer
 sudo chmod -R 0777 /var/www
 sudo chown -R www-data:www-data /var/www
 
-sudo service mysql restart
 sudo service apache2 restart
+sudo service mysql restart
+sudo service webmin restart
 
 sudo apt-get autoremove -y --purge

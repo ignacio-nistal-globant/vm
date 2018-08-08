@@ -36,10 +36,13 @@ Once ready, you can test it by opening following URL on your browser:
 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
 ```
 
-If you want to test the Web Server or the MySQL database:
+If you want to manage the Web Server or the MySQL database:
 
 ```
-[https://127.0.0.1:10000/](https://127.0.0.1:8989/)
+[https://127.0.0.1:8989/](https://127.0.0.1:8989/)
+
+User: vagrant
+Password: vagrant
 ```
 ```
 [http://127.0.0.1:8080/phpmyadmin/](http://127.0.0.1:8080/phpmyadmin/)
