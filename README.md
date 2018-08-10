@@ -47,7 +47,7 @@ Password: vagrant
 ```
 ```
 http://127.0.0.1:8080/phpmyadmin/
-[https://127.0.0.1:8443/phpmyadmin/ (secure)
+https://127.0.0.1:8443/phpmyadmin/ (secure)
 ```
 
 That's all, as you can see, very simple.
