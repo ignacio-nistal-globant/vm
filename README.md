@@ -70,7 +70,7 @@ By default the build process only deletes the logs and restarts LAMP services.
 
 ### Tips ###
 
-**How to deal with RSA server sertificates (this fixes many cetifiates issues)**
+**How to deal with RSA server sertificates? (this one fixes many cetifiates related issues)**
 
 1. Go to the certificates directory:
 ```
@@ -78,16 +78,16 @@ $ cd /var/www/provision/vm/ssl
 ```
 2. Generate private key and certificate signing request:
 ```
-$ openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
-$ openssl rsa -passin pass:x -in server.pass.key -out server.key
-$ rm server.pass.key
-$ openssl req -new -key server.key -out server.csr
+$ openssl genrsa -des3 -passout pass:x -out localhost.pass.key 2048
+$ openssl rsa -passin pass:x -in localhost.pass.key -out localhost.key
+$ rm localhost.pass.key
+$ openssl req -new -key localhost.key -out localhost.csr
 ```
 3. Generate SSL certificate
 ```
-$ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+$ openssl x509 -req -days 365 -in localhost.csr -signkey localhost.key -out localhost.crt
 ```
-4. Restart the Apache Web Server or even better, the vagrant VM.
+4. Restart the Apache Web Server or, even better, the vagrant VM.
 
 ### MIT License ###
 
