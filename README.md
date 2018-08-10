@@ -40,7 +40,7 @@ https://127.0.0.1:8443/ (secure)
 If you want to manage the Web Server or the MySQL database:
 
 ```
-https://127.0.0.1:8989/ (secure)
+https://127.0.0.1:8989/ (secure only, webmin has its own server)
 
 User: vagrant
 Password: vagrant
@@ -67,6 +67,27 @@ $ vagrant --custom=build up
 ```
 
 By default the build process only deletes the logs and restarts LAMP services.
+
+### Tips ###
+
+##### How to deal with RSA server sertificates (this fixes many cetifiates issues)? #####
+
+1. Go to the certificates directory:
+```
+$ cd /var/www/provision/vm/ssl
+```
+2. Generate private key and certificate signing request:
+```
+$ openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
+$ openssl rsa -passin pass:x -in server.pass.key -out server.key
+$ rm server.pass.key
+$ openssl req -new -key server.key -out server.csr
+```
+3. Generate SSL certificate
+```
+$ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+```
+4. Restart the Apache Web Server or even better, the vagrant VM.
 
 ### MIT License ###
 
