@@ -70,7 +70,7 @@ By default the build process only deletes the logs and restarts LAMP services.
 
 ### Tips ###
 
-**How to deal with RSA server sertificates (this fixes many cetifiates issues) **
+**How to deal with RSA server sertificates (this fixes many cetifiates issues)**
 
 1. Go to the certificates directory:
 ```
