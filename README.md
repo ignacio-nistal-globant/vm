@@ -34,6 +34,7 @@ Once ready, you can test it by opening following URL on your browser:
 
 ```
 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+[https://127.0.0.1:8443/](https://127.0.0.1:8443/)
 ```
 
 If you want to manage the Web Server or the MySQL database:
@@ -46,6 +47,7 @@ Password: vagrant
 ```
 ```
 [http://127.0.0.1:8080/phpmyadmin/](http://127.0.0.1:8080/phpmyadmin/)
+[https://127.0.0.1:8443/phpmyadmin/]([https://127.0.0.1:8443/phpmyadmin/)
 ```
 
 That's all, as you can see, very simple.
