@@ -1,0 +1,50 @@
+{
+    "config": {
+    "source": "./source",
+    "theme": "./html/wp-content/themes/custom/assets"
+    },
+    "description": "Theme packages builder",
+    "devDependencies": {
+      "autoprefixer": "^7.1",
+      "copyfiles": "^1.2",
+      "eslint": "^4.5",
+      "eslint-config-standard": "^10.2",
+      "eslint-plugin-import": "^2.7",
+      "eslint-plugin-node": "5.1",
+      "eslint-plugin-promise": "^3.5",
+      "eslint-plugin-standard": "^3.0",
+      "imagemin-cli": "^3.0",
+      "mkdirp": "^0.5",
+      "node-sass": "^4.5",
+      "onchange": "^3.2",
+      "postcss-cli": "^4.1",
+      "rimraf": "^2.6",
+      "uglify-js": "^3.0"
+    },
+    "keywords": [],
+    "license": "CC-BY-4.0",
+    "name": "pacakges-builder",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/estebanspina/vm.git"
+    },
+    "scripts": {
+      "build:all": "npm run build:css && npm run build:fonts && npm run build:images && npm run build:js",
+      "build:css": "npm run css-clean && npm run css && npm run css-autoprefixer",
+      "build:fonts": "npm run fonts-clean && npm run fonts",
+      "build:images": "npm run images-clean && npm run images",
+      "build:js": "npm run js-clean && npm run js-lint && npm run js",
+      "css": "node-sass --output-style compressed -o $npm_package_config_theme/css $npm_package_config_source/css",
+      "css-autoprefixer": "postcss -u autoprefixer -r $npm_package_config_theme/css/theme.css",
+      "css-clean": "rimraf $npm_package_config_theme/css/theme.css",
+      "fonts": "copyfiles -f $npm_package_config_source/fonts/* $npm_package_config_theme/fonts",
+      "fonts-clean": "rimraf $npm_package_config_theme/fonts/*",
+      "images": "imagemin $npm_package_config_source/images/* -o $npm_package_config_theme/images",
+      "images-clean": "rimraf $npm_package_config_theme/images/*",
+      "js": "uglifyjs $npm_package_config_source/js/*.js -m -c -o $npm_package_config_theme/js/theme.js",
+      "js-clean": "rimraf $npm_package_config_theme/js/theme.js",
+      "js-lint": "eslint $npm_package_config_source/js/",
+      "watch:all": "onchange \"$npm_package_config_source/**/*.js\" \"$npm_package_config_source/**/*.scss\" -p -- npm run build:css && npm run build:js"
+    },
+    "version": "1.0.0"
+  }

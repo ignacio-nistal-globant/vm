@@ -48,7 +48,7 @@ sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password pass"
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
 
-sudo apt-get install -y nodejs
+sudo apt-get install -y nodejs npm
 sudo apt-get install -y php libapache2-mod-php
 sudo apt-get install -y phpmyadmin
 sudo apt-get install -y apt-transport-https webmin
