@@ -1,7 +1,7 @@
 {
     "config": {
     "source": "./source",
-    "theme": "./html/wp-content/themes/custom/assets"
+    "theme": "<< change this relative path to point directly to assets directory >>"
     },
     "description": "Theme packages builder",
     "devDependencies": {
