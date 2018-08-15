@@ -31,6 +31,10 @@ sudo a2ensite default-ssl
 
 sudo ufw allow in "Apache Full"
 
+sudo mkdir -p /var/www/source/css
+sudo mkdir -p /var/www/source/fonts
+sudo mkdir -p /var/www/source/images
+sudo mkdir -p /var/www/source/js
 sudo mkdir -p /var/www/var/log
 
 sudo mv /var/www/html/index.html /var/www/html/index.php
