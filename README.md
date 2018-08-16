@@ -66,7 +66,6 @@ The project also has a group of NPM tools that allow the developer to manage the
 The **build:css** tool deletes the contents of the theme directory, executes node-sass and autoprefixer.
 ```
 $ npm run build:css
-
 ```
 
 The **build:fonts** tool deletes the contents of the theme directory, and copy all available files in the source directory.
