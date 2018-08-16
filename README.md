@@ -64,9 +64,41 @@ To start the build process, execute the following command:
 
 ```
 $ vagrant --custom=build up
-```
 
 By default the build process only deletes the logs and restarts LAMP services.
+```
+
+The project also has a group of NPM tools that allow the developer to manage the the project build and assets packaging with minimal effort.
+
+```
+$ npm run build:css
+
+This tool deletes the contents of the theme directory, executes node-sass and autoprefixer.
+```
+
+```
+$ npm run build:fonts
+
+This tool deletes the contents of the theme directory, and copy all available files in the source directory.
+```
+
+```
+$ npm run build:images
+
+This tool deletes the contents of the theme directory, executes imagemin.
+```
+
+```
+$ npm run build:js
+
+This tool deletes the contents of the theme directory, executes eslint and uglifyjs.
+```
+
+```
+$ npm run build:all
+
+This tool executes all the tasks explained above in a single command.
+```
 
 ### Tips ###
 
