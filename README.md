@@ -17,7 +17,6 @@ The project has the following pre-requisites:
 * VirtualBox [http://www.virtualbox.org/](http://www.virtualbox.org/)
 
 Once you have installed the prerequisites, fork and clone the project repository and modify the following lines in [vagrantfile](./vagrantfile):
-
 ```
 VBOX_CORE = "1"
 VBOX_MEMORY = "1024"
@@ -25,20 +24,17 @@ VBOX_NAME = "Development"
 ```
 
 Now execute the following command:
-
 ```
 $ vagrant up
 ```
 
 Once ready, you can test it by opening following URL on your browser:
-
 ```
 http://127.0.0.1:8080/
 https://127.0.0.1:8443/ (secure)
 ```
 
 If you want to manage the Web Server or the MySQL database:
-
 ```
 https://127.0.0.1:8989/ (secure only, webmin has its own server)
 
@@ -61,43 +57,41 @@ The project has an optional tool that can be used during the vagrant up or reloa
 Using build as custom argument, the tool will execute [build.sh](./build.sh) as soon as finish with the start or reload process. You can add any line you need into this file.
 
 To start the build process, execute the following command:
-
 ```
 $ vagrant --custom=build up
-
-By default the build process only deletes the logs and restarts LAMP services.
 ```
 
 The project also has a group of NPM tools that allow the developer to manage the the project build and assets packaging with minimal effort.
 
+The **build:css** tool deletes the contents of the theme directory, executes node-sass and autoprefixer.
 ```
 $ npm run build:css
 
-This tool deletes the contents of the theme directory, executes node-sass and autoprefixer.
 ```
 
+The **build:fonts** tool deletes the contents of the theme directory, and copy all available files in the source directory.
 ```
 $ npm run build:fonts
-
-This tool deletes the contents of the theme directory, and copy all available files in the source directory.
 ```
 
+The **build:images** tool deletes the contents of the theme directory, executes imagemin.
 ```
 $ npm run build:images
-
-This tool deletes the contents of the theme directory, executes imagemin.
 ```
 
+The **build:js** tool deletes the contents of the theme directory, executes eslint and uglifyjs.
 ```
 $ npm run build:js
-
-This tool deletes the contents of the theme directory, executes eslint and uglifyjs.
 ```
 
+The **build:all** tool executes ALL the tasks explained above in a single command.
 ```
 $ npm run build:all
+```
 
-This tool executes all the tasks explained above in a single command.
+And the **watch:all** tools executes onchange and remain waiting for any css or js change.
+```
+$ npm run watch:all
 ```
 
 ### Tips ###
