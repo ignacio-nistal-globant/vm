@@ -37,7 +37,14 @@ sudo mkdir -p /var/www/source/images
 sudo mkdir -p /var/www/source/js
 sudo mkdir -p /var/www/var/log
 
-sudo mv /var/www/html/index.html /var/www/html/index.php
+if [ -f /var/www/html/index.html ]
+then
+    sudo mv /var/www/html /var/www/public
+    sudo mv /var/www/public/index.html /var/www/public/index.php
+else
+    sudo mkdir /var/www/public
+    sudo touch /var/www/public/index.php
+fi
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password pass"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password pass"
