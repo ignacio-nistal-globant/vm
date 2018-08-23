@@ -61,38 +61,6 @@ To start the build process, execute the following command:
 $ vagrant --custom=build up
 ```
 
-The project also has a group of NPM tools that allow the developer to manage the the project build and assets packaging with minimal effort.
-
-The **build:css** tool deletes the contents of the theme directory, executes node-sass and autoprefixer.
-```
-$ npm run build:css
-```
-
-The **build:fonts** tool deletes the contents of the theme directory, and copy all available files in the source directory.
-```
-$ npm run build:fonts
-```
-
-The **build:images** tool deletes the contents of the theme directory, executes imagemin.
-```
-$ npm run build:images
-```
-
-The **build:js** tool deletes the contents of the theme directory, executes eslint and uglifyjs.
-```
-$ npm run build:js
-```
-
-The **build:all** tool executes ALL the tasks explained above in a single command.
-```
-$ npm run build:all
-```
-
-And the **watch:all** tools executes onchange and remain waiting for any css or js change.
-```
-$ npm run watch:all
-```
-
 ### Tips ###
 
 **How to deal with RSA server sertificates? (this one fixes many cetifiates related issues)**

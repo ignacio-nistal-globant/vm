@@ -31,14 +31,16 @@ sudo a2ensite default-ssl
 
 sudo ufw allow in "Apache Full"
 
-sudo mkdir -p /var/www/source/css
-sudo mkdir -p /var/www/source/fonts
-sudo mkdir -p /var/www/source/images
-sudo mkdir -p /var/www/source/js
 sudo mkdir -p /var/www/var/log
 
-sudo mv /var/www/html /var/www/public
-sudo mv /var/www/public/index.html /var/www/public/index.php
+if [ ! -d /var/www/public ]; then
+    sudo mv /var/www/html /var/www/public
+    sudo mv /var/www/public/index.html /var/www/public/index.php
+
+    if [ -d /var/www/html ]; then
+        sudo rm -rf /var/www/html
+    fi
+fi
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password pass"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password pass"
@@ -53,7 +55,6 @@ sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password pass"
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
 
-sudo apt-get install -y nodejs npm
 sudo apt-get install -y php libapache2-mod-php
 sudo apt-get install -y phpmyadmin
 sudo apt-get install -y apt-transport-https webmin
@@ -66,8 +67,9 @@ sudo mv composer.phar /usr/local/bin/composer
 sudo chmod -R 0777 /var/www
 sudo chown -R www-data:www-data /var/www
 
+sudo apt-get autoremove -y --purge
+
 sudo service apache2 restart
 sudo service mysql restart
-sudo service webmin restart
 
-sudo apt-get autoremove -y --purge
+sudo service webmin restart
