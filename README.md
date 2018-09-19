@@ -63,7 +63,7 @@ $ vagrant --custom=build up
 
 ### Tips ###
 
-**How to deal with RSA server sertificates? (this one fixes many cetifiates related issues)**
+**How to deal with RSA server certificates? (this one fixes many cetifiates related issues)**
 
 1. Go to the certificates directory:
 ```
