@@ -31,15 +31,11 @@ sudo a2ensite default-ssl
 
 sudo ufw allow in "Apache Full"
 
+sudo mkdir -p /var/www/public
 sudo mkdir -p /var/www/var/log
 
-if [ ! -d /var/www/public ]; then
-    sudo mv /var/www/html /var/www/public
-    sudo mv /var/www/public/index.html /var/www/public/index.php
-
-    if [ -d /var/www/html ]; then
-        sudo rm -rf /var/www/html
-    fi
+if [ -d /var/www/html ]; then
+    sudo rm -rf /var/www/html
 fi
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password pass"
@@ -63,6 +59,9 @@ sudo iptables -A INPUT -p tcp -m tcp --dport 10000 -j ACCEPT
 
 sudo curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+
+sudo apt-get install -y nodejs
+sudo apt-get install -y npm
 
 sudo chmod -R 0777 /var/www
 sudo chown -R www-data:www-data /var/www
