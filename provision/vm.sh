@@ -4,12 +4,6 @@ export DEBIAN_FRONTEND=noninteractive
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-sudo add-apt-repository "deb http://download.webmin.com/download/repository sarge contrib"
-
-wget http://www.webmin.com/jcameron-key.asc
-
-sudo apt-key add jcameron-key.asc
-
 sudo apt-get update
 sudo apt-get upgrade -y
 
@@ -31,9 +25,6 @@ sudo a2ensite default-ssl
 
 sudo ufw allow in "Apache Full"
 
-sudo mkdir -p /var/www/public
-sudo mkdir -p /var/www/var/log
-
 if [ -d /var/www/html ]; then
     sudo rm -rf /var/www/html
 fi
@@ -53,9 +44,6 @@ sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver mul
 
 sudo apt-get install -y php libapache2-mod-php
 sudo apt-get install -y phpmyadmin
-sudo apt-get install -y apt-transport-https webmin
-
-sudo iptables -A INPUT -p tcp -m tcp --dport 10000 -j ACCEPT
 
 sudo curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
@@ -67,8 +55,3 @@ sudo chmod -R 0777 /var/www
 sudo chown -R www-data:www-data /var/www
 
 sudo apt-get autoremove -y --purge
-
-sudo service apache2 restart
-sudo service mysql restart
-
-sudo service webmin restart

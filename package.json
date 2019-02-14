@@ -32,16 +32,22 @@
     "url": "https://github.com/estebanspina/vm"
   },
   "scripts": {
+    "build:all": "npm run build:css && npm run build:fonts && npm run build:images && npm run build:js",
+
     "build:css": "npm run css-clean && npm run css && npm run css-autoprefixer",
     "build:fonts": "npm run fonts-clean && npm run fonts",
-
-
-
+    "build:images": "npm run images-clean && npm run images",
+    "build:js": "npm run js-clean && npm run js-lint && npm run js",
+    "css": "node-sass --output-style compressed -o $npm_package_config_public/css $npm_package_config_source/css",
+    "css-autoprefixer": "postcss -u autoprefixer -r $npm_package_config_public/css/*",
+    "css-clean": "mkdirp $npm_package_config_public/css -p && rimraf $npm_package_config_public/css/*",
     "fonts": "copyfiles -f $npm_package_config_source/fonts/* $npm_package_config_public/fonts",	
-    "fonts-clean": "rimraf $npm_package_config_public/fonts/*"
-
-
-
+    "fonts-clean": "mkdirp $npm_package_config_public/fonts -p && rimraf $npm_package_config_public/fonts/*",
+    "images": "imagemin $npm_package_config_source/images/* -o $npm_package_config_public/images",	
+    "images-clean": "mkdirp $npm_package_config_public/images -p && rimraf $npm_package_config_public/images/*",
+    "js": "uglifyjs $npm_package_config_public/js/*.js -m -c -o dist/js/app.min.js",
+    "js-clean": "mkdirp $npm_package_config_public/js -p && rimraf $npm_package_config_public/js/*",
+    "js-lint": "eslint $npm_package_config_source/js"
   },
   "version": "1.0.0"
 }
