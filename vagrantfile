@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.provision "shell", path: "./provision/vm.sh", :args => []
-    config.vm.provision "shell", path: "./provision/buils.sh", :args => []
+    config.vm.provision "shell", path: "./provision/build.sh", :args => []
 
     if "build" === command
         config.vm.provision "shell", path: "./provision/build.sh", :args => [], run: "always"
