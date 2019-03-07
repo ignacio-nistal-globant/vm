@@ -2,8 +2,8 @@
   "author": "Esteban Spina <esteban.spina@gmail.com>",
   "bugs": "https://github.com/estebanspina/vm/issues",
   "config": {	
-    "public": "./public/assets",	
-    "source": "./assets"	
+    "public": "./public/assets",
+    "source": "./assets"
   },
   "dependencies": {
     "autoprefixer": "^9.4.2",
@@ -33,7 +33,6 @@
   },
   "scripts": {
     "build:all": "npm run build:css && npm run build:fonts && npm run build:images && npm run build:js",
-
     "build:css": "npm run css-clean && npm run css && npm run css-autoprefixer",
     "build:fonts": "npm run fonts-clean && npm run fonts",
     "build:images": "npm run images-clean && npm run images",
