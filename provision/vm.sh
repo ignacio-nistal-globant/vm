@@ -26,6 +26,10 @@ sudo a2ensite default-ssl
 sudo ufw allow in "Apache Full"
 
 if [ -d /var/www/html ]; then
+    if [ -f /var/www/html/index.html ]; then
+        sudo mv /var/www/html/index.html /var/www/html/index.php
+    fi
+
     sudo mv /var/www/html /var/www/public
 fi
 
