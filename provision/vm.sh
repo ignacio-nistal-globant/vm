@@ -26,7 +26,7 @@ sudo a2ensite default-ssl
 sudo ufw allow in "Apache Full"
 
 if [ -d /var/www/html ]; then
-    sudo rm -rf /var/www/html
+    sudo mv /var/www/html /var/www/public
 fi
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password pass"
